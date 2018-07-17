@@ -8,61 +8,70 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class Christmas extends Command {
-	
+
 	private LedStrip ledStrip;
-	private int numOfLights;
+
 	private int color;
+
 	private boolean prevLight;
-	private boolean prevInput;
+	// private boolean prevInput;
 
-    public Christmas(LedStrip ledStrip) {
-        requires(ledStrip);
-        prevLight = ledStrip.getSensor();
-        prevLight = ledStrip.getInput();
-        color=0;
-        numOfLights = 0;
-        this.ledStrip = ledStrip;
-    }
+	public Christmas(LedStrip ledStrip) {
+		requires(ledStrip);
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    }
+		prevLight = ledStrip.getSensor();
+		// prevLight = ledStrip.getInput();
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	if(ledStrip.getInput()&&!prevInput){
-    		numOfLights++;
-    		numOfLights%=3;
-    	}
-    	
-    	if(ledStrip.getSensor()&&!prevLight){
-    		color++;
-    		color%=3;
-    	}
-    	
-    	switch(numOfLights){
-    	case 0: ledStrip.setColor(color%3==0, color%3==1, color%3==2);
-    	case 1: ledStrip.setColor(!(color%3==0), !(color%3==1), !(color%3==2));
-    	case 2: ledStrip.setColor(true, true, true);
-    	}
-    	
-    	prevInput=ledStrip.getInput();
-    	prevLight=ledStrip.getSensor();
-    	
-    	
-    }
+		color = 0;
+		this.ledStrip = ledStrip;
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+		System.out.println("color " + color);
+
+		boolean currentLight = ledStrip.getSensor();
+
+		// if (ledStrip.getInput() && !prevInput) {
+		// numOfLights++;
+		// numOfLights %= 3;
+		// }
+
+		if (currentLight && !prevLight) {
+			color++;
+			color %= 3;
+		}
+
+		// switch (numOfLights) {
+		// case 0:
+		ledStrip.setColor(color % 3 == 0, color % 3 == 1, color % 3 == 2);
+		// case 1:
+		// ledStrip.setColor(!(color % 3 == 0), !(color % 3 == 1), !(color % 3
+		// == 2));
+		// case 2:
+		// ledStrip.setColor(true, true, true);
+		// }
+
+		// prevInput = ledStrip.getInput();
+		prevLight = currentLight;
+	}
+
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return false;
+	}
+
+	// Called once after isFinished returns true
+	protected void end() {
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+	}
 }

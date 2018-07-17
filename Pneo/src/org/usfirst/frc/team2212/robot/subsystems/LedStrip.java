@@ -9,6 +9,7 @@ public class LedStrip extends Subsystem {
 	private Solenoid blue;
 	private Solenoid green;
 	private Solenoid red;
+
 	private DigitalInput lightSensor;
 	private DigitalInput digitalInput;
 
@@ -29,8 +30,8 @@ public class LedStrip extends Subsystem {
 	public boolean getSensor() {
 		return lightSensor.get();
 	}
-	
-	public boolean getInput(){
+
+	public boolean getInput() {
 		return digitalInput.get();
 	}
 

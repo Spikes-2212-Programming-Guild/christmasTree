@@ -7,18 +7,15 @@
 
 package org.usfirst.frc.team2212.robot;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-
 import org.usfirst.frc.team2212.robot.subsystems.LedStrip;
 import org.usfirst.frc.team2212.robot.subsystems.Piston;
 
 import com.spikes2212.dashboard.DashBoardController;
+
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,7 +25,7 @@ import com.spikes2212.dashboard.DashBoardController;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static OI m_oi;
+	public static OI oi;
 	public static Piston piston1;
 	public static Piston piston2;
 	public static LedStrip ledStrip;
@@ -41,13 +38,14 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotInit() {
-		ledStrip = new LedStrip(new Solenoid(RobotMap.PCM1.PCM_ID_NUMBER, RobotMap.PCM1.BLUE_LED),
-				new Solenoid(RobotMap.PCM1.PCM_ID_NUMBER, RobotMap.PCM1.GREEN_LED),
-				new Solenoid(RobotMap.PCM1.PCM_ID_NUMBER, RobotMap.PCM1.RED_LED),
+		ledStrip = new LedStrip(new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.BLUE_LED),
+				new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.GREEN_LED),
+				new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.RED_LED),
 				new DigitalInput(RobotMap.DIO.LIGHT_SENSOR), new DigitalInput(RobotMap.DIO.DIGITAL_INPUT));
-		piston1 = new Piston(RobotMap.PCM0.Piston1Forward, RobotMap.PCM0.Piston1Reverse);
-		piston2 = new Piston(RobotMap.PCM0.Piston2Forward, RobotMap.PCM0.Piston2Reverse);
-		m_oi = new OI();
+
+		piston1 = new Piston(RobotMap.PNEUMATICS.Piston1Forward, RobotMap.PNEUMATICS.Piston1Reverse);
+		piston2 = new Piston(RobotMap.PNEUMATICS.Piston2Forward, RobotMap.PNEUMATICS.Piston2Reverse);
+		oi = new OI();
 	}
 
 	/**
@@ -112,7 +110,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		
+
 	}
 
 	/**

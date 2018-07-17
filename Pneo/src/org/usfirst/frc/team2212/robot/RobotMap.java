@@ -14,24 +14,29 @@ package org.usfirst.frc.team2212.robot;
  * floating around.
  */
 public class RobotMap {
-	
-	public interface PCM0{
+
+	public interface CHRISTMASS {
+		public static final int PCM_ID_NUMBER = 3;
+
+		public static final int BLUE_LED = 0;
+		public static final int RED_LED = 1;
+		public static final int GREEN_LED = 2;
+
+	}
+
+	public interface PNEUMATICS {
+		public static final int PCM_ID_NUMBER = 0;
+
 		public static final int Piston1Forward = 5;
 		public static final int Piston1Reverse = 4;
 		public static final int Piston2Forward = 7;
 		public static final int Piston2Reverse = 6;
+
 	}
-	
-	public interface PCM1{
-		public static final int PCM_ID_NUMBER = 1;
-		public static final int BLUE_LED = 0;
-		public static final int RED_LED = 1;
-		public static final int GREEN_LED = 2;
-	}
-	
-	public interface DIO{
+
+	public interface DIO {
 		public static final int LIGHT_SENSOR = 0;
 		public static final int DIGITAL_INPUT = 1;
 	}
-	
+
 }
