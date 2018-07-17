@@ -31,6 +31,7 @@ public class RobotMap {
 	
 	public interface DIO{
 		public static final int LIGHT_SENSOR = 0;
+		public static final int DIGITAL_INPUT = 1;
 	}
 	
 }
