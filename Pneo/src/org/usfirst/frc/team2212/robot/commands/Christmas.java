@@ -2,27 +2,51 @@ package org.usfirst.frc.team2212.robot.commands;
 
 import org.usfirst.frc.team2212.robot.subsystems.LedStrip;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * WARNING
+ * 
+ * this code sucks. terrible variable names.
+ * 
+ * nice class documentation tho
+ * 
+ * @author probably satan
+ * @see WPI_TalonSRX
+ * @alsosee PANDORA_SERVER
+ * 
+ * @version im afraid that's the final one
+ * 
+ * @category bad design
+ * 
+ *           hell yea
+ * 
+ *           merry christmas
  */
 public class Christmas extends Command {
 
 	private LedStrip ledStrip;
 
-	private int color;
+	private int colorIndex;
+	private int numColorsIndex;
 
-	private boolean prevLight;
+	private boolean lastColorChangerValue;
+	private boolean lastNumberChangerValue;
+	private boolean lastLedButtonValue;
+
+	private boolean ledsOn;
 	// private boolean prevInput;
 
 	public Christmas(LedStrip ledStrip) {
 		requires(ledStrip);
 
-		prevLight = ledStrip.getSensor();
+		lastColorChangerValue = ledStrip.getSwitchColorValue();
 		// prevLight = ledStrip.getInput();
 
-		color = 0;
+		colorIndex = 0;
+		numColorsIndex = 0;
 		this.ledStrip = ledStrip;
 	}
 
@@ -33,32 +57,42 @@ public class Christmas extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 
-		System.out.println("color " + color);
+		boolean currentColorChangerValue = ledStrip.getSwitchColorValue();
+		boolean currentNumberChangerValue = ledStrip.getSetNumberValue();
+		boolean currentLedButtonValue = ledStrip.getTurnOnOffValue();
 
-		boolean currentLight = ledStrip.getSensor();
-
-		// if (ledStrip.getInput() && !prevInput) {
-		// numOfLights++;
-		// numOfLights %= 3;
-		// }
-
-		if (currentLight && !prevLight) {
-			color++;
-			color %= 3;
+		if (!currentLedButtonValue && lastLedButtonValue) {
+			ledsOn = !ledsOn;
 		}
 
-		// switch (numOfLights) {
-		// case 0:
-		ledStrip.setColor(color % 3 == 0, color % 3 == 1, color % 3 == 2);
-		// case 1:
-		// ledStrip.setColor(!(color % 3 == 0), !(color % 3 == 1), !(color % 3
-		// == 2));
-		// case 2:
-		// ledStrip.setColor(true, true, true);
-		// }
+		boolean setColor = !currentColorChangerValue && lastColorChangerValue;
+		if (setColor) {
+			colorIndex++;
+			colorIndex %= 3;
+		}
 
-		// prevInput = ledStrip.getInput();
-		prevLight = currentLight;
+		boolean setNumber = !currentNumberChangerValue && lastNumberChangerValue;
+		if (setNumber) {
+
+			numColorsIndex++;
+			numColorsIndex %= 3;
+		}
+
+		if (ledsOn) {
+			switch (numColorsIndex) {
+			case 0:
+				ledStrip.setColor(colorIndex == 0, colorIndex == 1, colorIndex == 2);
+			case 1:
+				ledStrip.setColor(colorIndex != 0, colorIndex != 1, colorIndex != 2);
+			case 2:
+				ledStrip.setColor(true, true, true);
+			}
+		} else
+			ledStrip.setColor(false, false, false);
+
+		lastColorChangerValue = currentColorChangerValue;
+		lastNumberChangerValue = currentNumberChangerValue;
+		lastLedButtonValue = currentLedButtonValue;
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

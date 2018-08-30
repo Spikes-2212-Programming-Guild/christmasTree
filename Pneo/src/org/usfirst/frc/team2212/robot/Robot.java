@@ -8,7 +8,6 @@
 package org.usfirst.frc.team2212.robot;
 
 import org.usfirst.frc.team2212.robot.subsystems.LedStrip;
-import org.usfirst.frc.team2212.robot.subsystems.Piston;
 
 import com.spikes2212.dashboard.DashBoardController;
 
@@ -26,8 +25,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  */
 public class Robot extends TimedRobot {
 	public static OI oi;
-	public static Piston piston1;
-	public static Piston piston2;
 	public static LedStrip ledStrip;
 	public static DashBoardController dbc = new DashBoardController();
 
@@ -38,14 +35,11 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotInit() {
-		ledStrip = new LedStrip(new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.BLUE_LED),
-				new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.GREEN_LED),
-				new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.RED_LED),
-				new DigitalInput(RobotMap.DIO.LIGHT_SENSOR), new DigitalInput(RobotMap.DIO.DIGITAL_INPUT));
-
-		piston1 = new Piston(RobotMap.PNEUMATICS.Piston1Forward, RobotMap.PNEUMATICS.Piston1Reverse);
-		piston2 = new Piston(RobotMap.PNEUMATICS.Piston2Forward, RobotMap.PNEUMATICS.Piston2Reverse);
 		oi = new OI();
+
+		ledStrip = new LedStrip(new Solenoid(RobotMap.CHRISTMASS.BLUE_LED), new Solenoid(RobotMap.CHRISTMASS.GREEN_LED),
+				new Solenoid(RobotMap.CHRISTMASS.RED_LED), new DigitalInput(RobotMap.DIO.LIGHT_SENSOR),
+				new DigitalInput(RobotMap.DIO.DIGITAL_INPUT), new DigitalInput(RobotMap.DIO.HALL_EFFECT));
 	}
 
 	/**
@@ -110,7 +104,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-
+		dbc.update();
 	}
 
 	/**

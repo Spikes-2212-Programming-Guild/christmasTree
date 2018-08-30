@@ -24,19 +24,10 @@ public class RobotMap {
 
 	}
 
-	public interface PNEUMATICS {
-		public static final int PCM_ID_NUMBER = 0;
-
-		public static final int Piston1Forward = 5;
-		public static final int Piston1Reverse = 4;
-		public static final int Piston2Forward = 7;
-		public static final int Piston2Reverse = 6;
-
-	}
-
 	public interface DIO {
 		public static final int LIGHT_SENSOR = 0;
 		public static final int DIGITAL_INPUT = 1;
+		public static final int HALL_EFFECT = 1;
 	}
 
 }
