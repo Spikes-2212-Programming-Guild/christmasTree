@@ -35,6 +35,7 @@ public class Robot extends TimedRobot {
 	public static SignalLight signalLight;
 	public static DashBoardController dbc = new DashBoardController();
 	public static int score = 0;
+	public static int highScore = 0;
 	public static Random random = new Random();
 
 	// TODO delete me
@@ -52,6 +53,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("start game", new RunnableCommand(() -> {
 			signalLight.resetTimer();
 		}));
+		SmartDashboard.putNumber("high score", highScore);
 		dbc.addDouble("score: ", () -> {
 			return (double) score;
 		});

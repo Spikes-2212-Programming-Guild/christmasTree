@@ -3,6 +3,7 @@ package org.usfirst.frc.team2212.robot.commands;
 import org.usfirst.frc.team2212.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -34,8 +35,10 @@ public class activateLight extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (Robot.signalLight.isGameRunning() && Robot.signalLight.buttons[port].get() ^ buttonStart)
+		if (Robot.signalLight.isGameRunning() && Robot.signalLight.buttons[port].get() ^ buttonStart) {
 			Robot.score++;
+			SmartDashboard.putNumber("high score", Robot.highScore);
+		}
 		return isTimedOut()
 				|| (Robot.signalLight.buttons[port].get() ^ buttonStart && Robot.signalLight.isGameRunning());
 	}
