@@ -55,6 +55,7 @@ public class Robot extends TimedRobot {
 		dbc.addDouble("score: ", () -> {
 			return (double) score;
 		});
+		dbc.addDouble("time: ", signalLight::getTimeLeft);
 		ledStrip = new LedStrip(new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.BLUE_LED),
 				new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.GREEN_LED),
 				new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.RED_LED),

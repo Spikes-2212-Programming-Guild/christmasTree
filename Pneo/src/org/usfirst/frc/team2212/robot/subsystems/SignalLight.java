@@ -35,6 +35,10 @@ public class SignalLight extends Subsystem {
 		return timer < TIME_OF_ROUND.get();
 	}
 	
+	public double getTimeLeft() {
+		return TIME_OF_ROUND.get() - timer;
+	}
+	
 	public void resetTimer() {
 		timer = 0;
 	}
