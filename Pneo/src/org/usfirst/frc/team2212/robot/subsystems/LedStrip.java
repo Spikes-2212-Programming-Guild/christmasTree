@@ -1,7 +1,6 @@
 package org.usfirst.frc.team2212.robot.subsystems;
 
 import org.usfirst.frc.team2212.robot.commands.Christmas;
-import org.usfirst.frc.team2212.robot.commands.Halloween;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
