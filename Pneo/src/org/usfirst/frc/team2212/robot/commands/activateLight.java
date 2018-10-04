@@ -15,7 +15,6 @@ public class activateLight extends Command {
     public activateLight(double timeout) {
     	requires(Robot.signalLight);
     	setTimeout(timeout);
-    	buttonStart = Robot.signalLight.buttons[port].get();
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -23,6 +22,7 @@ public class activateLight extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	this.port = Robot.random.nextInt(7);
+    	buttonStart = Robot.signalLight.buttons[port].get();
     	Robot.signalLight.changeLight(port, true);
     }
 
