@@ -7,9 +7,14 @@
 
 package org.usfirst.frc.team2212.robot;
 
+import java.util.Random;
+import java.util.function.Supplier;
+
 import org.usfirst.frc.team2212.robot.subsystems.LedStrip;
+import org.usfirst.frc.team2212.robot.subsystems.SignalLight;
 
 import com.spikes2212.dashboard.DashBoardController;
+import com.spikes2212.utils.RunnableCommand;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -26,7 +31,14 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public class Robot extends TimedRobot {
 	public static OI oi;
 	public static LedStrip ledStrip;
+	public static SignalLight signalLight;
 	public static DashBoardController dbc = new DashBoardController();
+	public static int score = 0;
+	public static Random random = new Random();
+	
+	//TODO delete me
+//	public static DigitalInput button = new 
+//	public static final Supplier<Boolean> PORT0 = dbc.addBoolean("port 0", ); 
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -36,12 +48,15 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-
+		dbc.addDouble("score: ", ()->{return (double)score;});
 		ledStrip = new LedStrip(new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.BLUE_LED),
 				new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.GREEN_LED),
 				new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.RED_LED),
-				new DigitalInput(RobotMap.DIO.LIGHT_SENSOR), new DigitalInput(RobotMap.DIO.DIGITAL_INPUT),
-				new DigitalInput(RobotMap.DIO.HALL_EFFECT));
+				new DigitalInput(RobotMap.DIO.LIGHT_SENSOR/*FIXME return to light sensor*/), new DigitalInput(RobotMap.DIO.DIGITAL_INPUT),
+				new DigitalInput(RobotMap.DIO.HALL_EFFECT/*FIXME */));
+		for (int i = 0; i < signalLight.buttons.length; i++)
+			dbc.addBoolean("di "+i, signalLight.buttons[i]::get);
+		signalLight = new SignalLight(RobotMap.DIO.buttons, RobotMap.WACK_EM_ALL.lights);
 	}
 
 	/**
