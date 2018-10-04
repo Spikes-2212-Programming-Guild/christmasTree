@@ -36,13 +36,15 @@ public class Christmas extends Command {
 	private boolean lastNumberChangerValue;
 	private boolean lastLedButtonValue;
 
-	private boolean ledsOn;
+	private boolean ledsOn = true;
 	// private boolean prevInput;
 
 	public Christmas(LedStrip ledStrip) {
 		requires(ledStrip);
 
 		lastColorChangerValue = ledStrip.getSwitchColorValue();
+		lastNumberChangerValue = ledStrip.getSetNumberValue();
+		lastLedButtonValue = ledStrip.getTurnOnOffValue();
 		// prevLight = ledStrip.getInput();
 
 		colorIndex = 0;
@@ -77,15 +79,20 @@ public class Christmas extends Command {
 			numColorsIndex++;
 			numColorsIndex %= 3;
 		}
+		System.out.println("color index " + colorIndex);
+		System.out.println("color number " + numColorsIndex);
 
 		if (ledsOn) {
 			switch (numColorsIndex) {
 			case 0:
 				ledStrip.setColor(colorIndex == 0, colorIndex == 1, colorIndex == 2);
+				break;
 			case 1:
 				ledStrip.setColor(colorIndex != 0, colorIndex != 1, colorIndex != 2);
+				break;
 			case 2:
 				ledStrip.setColor(true, true, true);
+				break;
 			}
 		} else
 			ledStrip.setColor(false, false, false);

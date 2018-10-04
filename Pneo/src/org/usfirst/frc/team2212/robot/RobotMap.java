@@ -16,18 +16,18 @@ package org.usfirst.frc.team2212.robot;
 public class RobotMap {
 
 	public interface CHRISTMASS {
-		public static final int PCM_ID_NUMBER = 3;
+		public static final int PCM_ID_NUMBER = 0;
 
-		public static final int BLUE_LED = 0;
-		public static final int RED_LED = 1;
-		public static final int GREEN_LED = 2;
+		public static final int BLUE_LED = 1;
+		public static final int RED_LED = 2;
+		public static final int GREEN_LED = 0;
 
 	}
 
 	public interface DIO {
-		public static final int LIGHT_SENSOR = 0;
-		public static final int DIGITAL_INPUT = 1;
-		public static final int HALL_EFFECT = 1;
+		public static final int LIGHT_SENSOR = 9;
+		public static final int DIGITAL_INPUT = 0;
+		public static final int HALL_EFFECT = 3;
 	}
 
 }

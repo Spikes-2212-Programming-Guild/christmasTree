@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2212.robot.subsystems;
 
 import org.usfirst.frc.team2212.robot.commands.Christmas;
+import org.usfirst.frc.team2212.robot.commands.Halloween;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -30,6 +31,9 @@ public class LedStrip extends Subsystem {
 		blue.set(isBlueOn);
 		green.set(isGreenOn);
 		red.set(isRedOn);
+		System.out.println("value 1 " + isBlueOn);
+		System.out.println("value 2 " + isGreenOn);
+		System.out.println("value 3 " + isRedOn);
 	}
 
 	public boolean getTurnOnOffValue() {

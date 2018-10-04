@@ -37,9 +37,11 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		oi = new OI();
 
-		ledStrip = new LedStrip(new Solenoid(RobotMap.CHRISTMASS.BLUE_LED), new Solenoid(RobotMap.CHRISTMASS.GREEN_LED),
-				new Solenoid(RobotMap.CHRISTMASS.RED_LED), new DigitalInput(RobotMap.DIO.LIGHT_SENSOR),
-				new DigitalInput(RobotMap.DIO.DIGITAL_INPUT), new DigitalInput(RobotMap.DIO.HALL_EFFECT));
+		ledStrip = new LedStrip(new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.BLUE_LED),
+				new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.GREEN_LED),
+				new Solenoid(RobotMap.CHRISTMASS.PCM_ID_NUMBER, RobotMap.CHRISTMASS.RED_LED),
+				new DigitalInput(RobotMap.DIO.LIGHT_SENSOR), new DigitalInput(RobotMap.DIO.DIGITAL_INPUT),
+				new DigitalInput(RobotMap.DIO.HALL_EFFECT));
 	}
 
 	/**
