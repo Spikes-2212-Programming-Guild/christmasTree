@@ -21,13 +21,26 @@ public class SignalLight extends Subsystem {
 	public final DigitalInput[] buttons = new DigitalInput[7];
 	public final Solenoid[] lights = new Solenoid[7];
 	public static final Supplier<Double> TIME_OF_ROUND= ConstantHandler.addConstantDouble("Time of round", 60); 
-	public static double counter = TIME_OF_ROUND.get();
-
+	private double timer;
+	
 	public SignalLight(int[] buttonPorts, int[] lightPorts) {
+		timer = 0;
 		for (int i = 0; i < buttons.length; i++)
 			buttons[i] = new DigitalInput(buttonPorts[i]);
 		for (int i = 0; i < lights.length; i++)
 			lights[i] = new Solenoid(RobotMap.WACK_EM_ALL.PCM_ID_NUMBER, lightPorts[i]);
+	}
+	
+	public boolean isGameRunning() {
+		return timer < TIME_OF_ROUND.get();
+	}
+	
+	public void resetTimer() {
+		timer = 0;
+	}
+	
+	public void addTime() {
+		timer++;
 	}
 
 	public void changeLight(int port, boolean on){
