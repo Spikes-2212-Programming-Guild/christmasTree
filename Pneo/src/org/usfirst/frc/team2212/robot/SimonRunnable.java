@@ -4,14 +4,14 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class SimonRunable implements Runnable {
+public class SimonRunnable implements Runnable {
 
 	private Solenoid[] lights = new Solenoid[RobotMap.SIMON.LIGHTS.length];
 	private DigitalInput[] buttons = new DigitalInput[RobotMap.SIMON.BUTTONS.length];
 	private Calculator calculator;
 	private int pressed = -1;
 
-	public SimonRunable() {
+	public SimonRunnable() {
 		for (int i = 0; i < lights.length; i++) {
 			lights[i] = new Solenoid(RobotMap.SIMON.LIGHTS[i]);
 			buttons[i] = new DigitalInput(RobotMap.SIMON.BUTTONS[i]);
