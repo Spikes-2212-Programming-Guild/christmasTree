@@ -18,20 +18,20 @@ public class RobotMap {
 	public interface CHRISTMASS {
 		public static final int PCM_ID_NUMBER = 3;
 
-		public static final int BLUE_LED = 7;
+		public static final int BLUE_LED = 4;
 		public static final int RED_LED = 5;
 		public static final int GREEN_LED = 6;
 	}
 	
 	public interface SIMON{
 		public static final int[] BUTTONS = {0,1,2,3,4,5,6};
-		public static final int[] LIGHTS = {1,2,3,4,5,6,7};
+		public static final int[] LIGHTS = {0,1,2,3,4,5,6};
 	}
 
 	public interface DIO {
-		public static final int LIGHT_SENSOR = 1;
-		public static final int DIGITAL_INPUT = 2;
-		public static final int HALL_EFFECT = 0; 
+		public static final int LIGHT_SENSOR = 8;
+		public static final int DIGITAL_INPUT = 9;
+		public static final int HALL_EFFECT = 7; 
 		
 	}
 
