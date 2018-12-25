@@ -2,7 +2,7 @@ package org.usfirst.frc.team2212.robot;
 import java.util.ArrayList;
 
 public class Calculator {
-	public static final int MAX_TURNS = 20;
+	public static final int MAX_TURNS = 40;
 	private int buttonNum;
 	private ArrayList<Integer> colorOrder;
 	private int placeInTurn;
@@ -61,6 +61,7 @@ public class Calculator {
 	public void resetGame() {
 		colorOrder.clear();
 		printing = true;
+		placeInTurn = 0;
 		chooseNextColor();
 	}
 

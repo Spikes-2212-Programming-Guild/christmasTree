@@ -8,6 +8,10 @@
 
 package org.usfirst.frc.team2212.robot;
 
+import com.spikes2212.utils.RunnableCommand;
+
+import edu.wpi.first.wpilibj.buttons.Button;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -15,5 +19,13 @@ package org.usfirst.frc.team2212.robot;
 public class OI /* GEVALD */ {
 
 	public OI() {
+		/*Button b = new Button() {
+			@Override
+			public boolean get() {
+				return Robot.ledStrip.turnOnOff.get();
+			}
+		};
+		
+		b.whenPressed(new RunnableCommand(Robot.simonRunnable));*/
 	}
 }

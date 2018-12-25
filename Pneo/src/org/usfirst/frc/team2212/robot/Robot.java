@@ -48,7 +48,6 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotInit() {
-		oi = new OI();
 		dbc.addDouble("score: ", () -> {
 			return (double) score;
 		});
@@ -60,6 +59,8 @@ public class Robot extends TimedRobot {
 		simonRunnable = new SimonRunnable();
 		dbc.addDouble("Score", simonRunnable::getScore);
 		SmartDashboard.putData("start", new RunnableCommand(simonRunnable));
+		oi = new OI();
+		SmartDashboard.putString("High Score Holder", "Riki");
 	}
 
 	/**

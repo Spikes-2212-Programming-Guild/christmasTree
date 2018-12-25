@@ -13,7 +13,7 @@ public class LedStrip extends Subsystem {
 	private Solenoid green;
 	private Solenoid red;
 
-	private DigitalInput turnOnOff;
+	public DigitalInput turnOnOff;
 	private DigitalInput switchColor;
 	private DigitalInput setColorNumber;
 
